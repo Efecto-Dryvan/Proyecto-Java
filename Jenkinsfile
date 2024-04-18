@@ -16,7 +16,6 @@ pipeline {
                 // Ejecutar el análisis estático con SonarQube Scanner
                 script {
                     sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=org.maven.prueba21 -Dsonar.host.url=http://localhost:9000 -Dsonar.login=sqp_39b84779320f6f87fd8edf456e6ff0c932820ad8'
-                    }
                 }
             }
         }
