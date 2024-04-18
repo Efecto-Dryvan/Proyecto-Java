@@ -7,6 +7,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Clonar el repositorio
+                echo 'Clonando el repositorio'
                 checkout scm
             }
         }
@@ -14,8 +15,9 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 // Ejecutar el análisis estático con SonarQube Scanner
+                echo 'Ejecutando el análisis estático con SonarQube Scanner'
                 script {
-                    sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=org.maven.prueba21 -Dsonar.host.url=http://localhost:9000 -Dsonar.login=sqp_39b84779320f6f87fd8edf456e6ff0c932820ad8'
+                    sh 'mvn clean sonar:sonar -Dsonar.projectKey=org.maven.prueba21 -Dsonar.host.url=http://localhost:9000 -Dsonar.login=sqp_39b84779320f6f87fd8edf456e6ff0c932820ad8'
                 }
             }
         }
@@ -24,6 +26,7 @@ pipeline {
             steps {
                 // Ejecutar las pruebas
                 // Esto puede variar según el lenguaje y las herramientas utilizadas en tu proyecto
+                echo 'Ejecutando las pruebas'
                 sh 'mvn test' // Ejemplo para un proyecto Maven
             }
             post {
@@ -40,6 +43,7 @@ pipeline {
             steps {
                 // Ejecutar el proceso de construcción
                 // Esto puede variar según el lenguaje y las herramientas utilizadas en tu proyecto
+                echo 'Construyendo el proyecto'
                 sh 'mvn clean package' // Ejemplo para un proyecto Maven
             }
         }
