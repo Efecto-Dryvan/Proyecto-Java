@@ -14,14 +14,16 @@ pipeline {
         
         stage('SonarQube Analysis') {
             steps {
+            	def mvn = tool 'Default Maven';
+            
                 // Ejecutar el análisis estático con SonarQube Scanner
                 echo 'Ejecutando el análisis estático con SonarQube Scanner'
-                script {
-                    sh 'mvn clean sonar:sonar -Dsonar.projectKey=org.maven.prueba21 -Dsonar.host.url=http://localhost:9000 -Dsonar.login=sqp_39b84779320f6f87fd8edf456e6ff0c932820ad8'
+                withSonarQubeEnv() {
+                    sh '${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=org.maven.prueba-20 -Dsonar.host.url=http://localhost:9000 -Dsonar.login=sqp_c3e1174a993be1cc1996a678de5670588d9650a7'
                 }
             }
         }
-        
+
         stage('Test') {
             steps {
                 // Ejecutar las pruebas
