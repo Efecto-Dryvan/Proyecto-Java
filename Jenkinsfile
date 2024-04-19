@@ -16,8 +16,8 @@ pipeline {
             steps {
                 echo 'Ejecutando el análisis estático con SonarQube Scanner'
                 withSonarQubeEnv(installationName: 'org.maven.prueba-20') {
-                    def mvn = tool 'Default Maven';
-                    sh '${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=org.maven.prueba-20 -Dsonar.host.url=http://localhost:9000 -Dsonar.login=sqp_c3e1174a993be1cc1996a678de5670588d9650a7'
+                    
+                    sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=org.maven.prueba-20 -Dsonar.host.url=http://localhost:9000 -Dsonar.login=sqp_c3e1174a993be1cc1996a678de5670588d9650a7'
                 }
             }
         }
